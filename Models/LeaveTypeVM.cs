@@ -6,17 +6,14 @@ using System.Threading.Tasks;
 
 namespace EmployeeLeave.Models
 {
-    public class DetailsLeaveTypeVM
+    public class LeaveTypeVM
     {
         //abstruction of the db
+       
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-        public DateTime DateCreated { get; set; }
-    }
-    public class CreateLeaveTypeVM
-    {
-        [Required]
-        public string Name { get; set; }
+        [Display(Name="Date created")]
+        public DateTime? DateCreated { get; set; }
     }
 }
