@@ -2,6 +2,7 @@
 using EmployeeLeave.Contracts;
 using EmployeeLeave.Data;
 using EmployeeLeave.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,6 +11,7 @@ using System.Linq;
 
 namespace EmployeeLeave.Controllers
 {
+    [Authorize(Roles ="Administrator")]
     public class LeaveTypesController : Controller
     {
         //Dependency injection 
@@ -23,6 +25,7 @@ namespace EmployeeLeave.Controllers
             _maper = maper;
         }
         // GET: LeaveTypesController
+       
         public ActionResult Index()
         {
             var leavetypes = _repo.FindAll().ToList();
