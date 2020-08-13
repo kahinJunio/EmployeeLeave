@@ -12,6 +12,10 @@ namespace EmployeeLeave.Models
        
         public int Id { get; set; }
         [Required]
+        [Range(1,25,ErrorMessage ="Please enter a valid number")]
+        [Display(Name ="Default Number of Days")]
+        public int DefaultDays { get; set; }
+        [Required]
         public string Name { get; set; }
         [Display(Name="Date created")]
         public DateTime? DateCreated { get; set; }

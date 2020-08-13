@@ -13,5 +13,7 @@ namespace EmployeeLeave.Data
         [Required]
         public string Name { get; set; }
         public DateTime DateCreated { get; set; }
+        public int DefaultDays { get; set; }
+        public int NumberOfDays { get; internal set; }
     }
 }

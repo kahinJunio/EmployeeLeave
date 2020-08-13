@@ -15,7 +15,6 @@ namespace EmployeeLeave.Controllers
     public class LeaveTypesController : Controller
     {
         //Dependency injection 
-
         private readonly ILeaveTypeRepository _repo;
         private readonly IMapper _maper;
 

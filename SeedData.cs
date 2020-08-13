@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using EmployeeLeave.Data;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,19 +9,19 @@ namespace EmployeeLeave
 {
     public static class SeedData
     {
-        public static void Seed(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+        public static void Seed(UserManager<Employee> userManager, RoleManager<IdentityRole> roleManager)
         {
             SeedRoles(roleManager);
             SeedUser(userManager);
 
         }
-        public static void SeedUser(UserManager<IdentityUser> userManager)
+        public static void SeedUser(UserManager<Employee> userManager)
         {
-            if (userManager.FindByNameAsync("admin").Result == null)
+            if (userManager.FindByNameAsync("admin@localhost.com").Result == null)
             {
-                var user = new IdentityUser
+                var user = new Employee
                 {
-                    UserName = "admin",
+                    UserName = "admin@localhost.com",
                     Email = "admin@localhost.com"
                 };
                 var result=userManager.CreateAsync(user,"P@ssword1").Result;
@@ -49,5 +50,6 @@ namespace EmployeeLeave
                var result=roleManager.CreateAsync(role).Result;
             }
         }
+
     }
 }
