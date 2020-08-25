@@ -25,5 +25,7 @@ namespace EmployeeLeave.Data
         [ForeignKey("ApprovedById")]
         public Employee ApprovedBy { get; set; }
         public string ApprovedById { get; set; }
+        public string Comments { get; set; }
+        public bool Cancel { get; set; }
     }
 }

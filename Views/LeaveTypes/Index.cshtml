@@ -9,7 +9,7 @@
 <p>
     <a asp-action="Create" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i> Create New</a>
 </p>
-<table class="table" id="tblData">
+<table class="table tblData">
     <thead>
         <tr>
             <th>
@@ -39,10 +39,3 @@
 }
     </tbody>
 </table>
-@section scripts{ 
-    <script>
-        $(document).ready(function () {
-            $('#tblData').DataTable();
-        });
-    </script>
-}

@@ -1,0 +1,51 @@
+﻿@model EmployeeLeave.Models.LeaveHistoryVM
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Reviewing @Model.RequestingEmployee.Firstname @Model.RequestingEmployee.Firstname's leave request </h1>
+<div>
+    @if (Model.Approved == null)
+    {
+        <div class="alert alert-warning">
+            <h2>Pending approval</h2>
+            <p><strong> @Model.RequestingEmployee.Firstname @Model.RequestingEmployee.Lastname</strong></p>
+            <hr />
+            <p>@Model.DateRequested</p>
+        </div>
+    }
+    @if (Model.Approved == true)
+    {
+        <div class="alert alert-success">
+            <h2>Accepted by <strong> @Model.ApprovedBy.Firstname</strong></h2>
+            <hr />
+            <p>@Model.Dateactioned</p>
+        </div>
+    }
+    @if (Model.Approved == false)
+    {
+        <div class="alert alert-danger">
+            <h2>Rejected by <strong> @Model.ApprovedBy.Firstname</strong></h2>
+            <hr />
+            <p>@Model.Dateactioned</p>
+        </div>
+    }
+    <hr />
+</div>
+<div>
+    @if (Model.Approved == null)
+    {
+        <a class="btn btn-outline-success" asp-action="ApproveRequest" asp-route-id="@Model.Id">
+            <i class="fa fa-check"></i> Approve
+        </a>
+        <a class="btn btn-outline-danger" asp-action="RejectRequest" asp-route-id="@Model.Id">
+            <i class="fa fa-remove"></i>Reject
+        </a>
+    }
+
+    <a asp-action="Index" class="btn btn-outline-secondary">
+        <i class="fa fa-arrow-left"></i>Back to List
+    </a>
+</div>

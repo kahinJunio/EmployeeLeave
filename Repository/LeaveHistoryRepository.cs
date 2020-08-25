@@ -1,5 +1,6 @@
 ﻿using EmployeeLeave.Contracts;
 using EmployeeLeave.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,13 +32,30 @@ namespace EmployeeLeave.Repository
 
         public ICollection<LeaveHistory> FindAll()
         {
-            var record = _db.LeaveHistories.ToList();
+            var record = _db.LeaveHistories
+                .Include(q=>q.RequestingEmployee)
+                .Include(q=>q.ApprovedBy)
+                .Include(q=>q.LeaveType)
+                .ToList();
             return record;
         }
 
         public LeaveHistory FindById(int id)
         {
-            return _db.LeaveHistories.Find(id);
+            var record= _db.LeaveHistories
+                .Include(q => q.RequestingEmployee)
+                .Include(q => q.ApprovedBy)
+                .Include(q => q.LeaveType)
+                .FirstOrDefault(q => q.Id==id);
+            return record;
+        }
+
+        public ICollection<LeaveHistory> GetEmployeeByLeaveHistory(string employeeid)
+        {
+            var record = FindAll().
+                Where(q => q.RequestingEmployeeId == employeeid)
+                .ToList();
+            return record;
         }
 
         public bool IsExist(int id)
