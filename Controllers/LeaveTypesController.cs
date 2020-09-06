@@ -141,16 +141,6 @@ namespace EmployeeLeave.Controllers
         {
             try
             {
-                var leavetype = _repo.FindById(id);
-                if (leavetype == null)
-                {
-                    return NotFound();
-                }
-                var isSucess = _repo.Delete(leavetype);
-                if (!isSucess)
-                {
-                    return BadRequest();
-                }
                 return RedirectToAction(nameof(Index));
             }
             catch

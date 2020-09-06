@@ -10,7 +10,6 @@ namespace EmployeeLeave.Models
 {
     public class LeaveAllocationVM
     {
-        
         public int Id { get; set; }
         public int NumberOfDays { get; set; }
         public DateTime DateCreated { get; set; }
